@@ -23,19 +23,21 @@
 
 const between = (x, min, max) =>  x >= min && x <= max
 
-function isOverGridPoint (mouseX, mouseY, x, y) {
-  return (between(mouseX, x-10, x+10) && between(mouseY, y-10, y+10))
+function isOverGridPoint (mouseX, mouseY, x, y, range = 20) {
+  return (between(mouseX, x-range, x+range) && between(mouseY, y-range, y+range))
     ? true
     : false
 }
 
 export default function Sketch(p5) {
   let canvas
-  let cols = 20
-  let rows = 10
+  let colorPicker
+  let cols = 40
+  let rows = 20
   let spots = []
   const windowResized = (p5) => p5.resizeCanvas(p5.windowWidth, p5.windowHeight)
   const lineThresh = 30
+  // let color = "#464C7C"
   let color = "#2b1b69"
 
   function Spot(p5, x, y) {
@@ -60,13 +62,16 @@ export default function Sketch(p5) {
     }
 
     function flash() {
-        _r = 80
+        _r = 20
         hovered = true
     }
 
     function randomWalk() {
-      _x += p5.random(-1,1)
-      _y += p5.random(-1,1)
+      _x += p5.random(-0.5,0.5)
+      _y += p5.random(-0.5,0.5)
+      // if (_y >= p5.windowHeight) {
+      //   _y = 0
+      // }
     }
 
     function values () {
@@ -89,6 +94,8 @@ export default function Sketch(p5) {
   p5.setup = (canvasParentRef) => {
     // p5.pixelDensity(1);
     canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight /*, p5.WEBGL*/)
+    colorPicker = p5.createColorPicker(color);
+    colorPicker.position(0, p5.height + 5);
     const colWidth = (p5.width / cols)
     const colHeight = (p5.height / rows)
     canvas.position(0, 0)
@@ -103,8 +110,9 @@ export default function Sketch(p5) {
 
   p5.draw = () => {
     p5.background(0)
+    color = colorPicker.color()
     // p5.translate(-p5.width / 2, -p5.height / 2,0);
-    p5.strokeWeight(3)
+    p5.strokeWeight(1)
     spots.forEach((s, i) => {
       let { _x, _y, hovered } = s.values()
       s.randomWalk()
@@ -115,6 +123,7 @@ export default function Sketch(p5) {
       spots.forEach(ref => {
         if (between(_x, ref.values()._x-lineThresh, ref.values()._x+lineThresh) && between(_y, ref.values()._y-lineThresh, ref.values()._y+lineThresh)) {
           p5.stroke(color)
+          p5.strokeWeight(3)
           p5.line(_x, _y, ref.values()._x, ref.values()._y)
         }
       })
