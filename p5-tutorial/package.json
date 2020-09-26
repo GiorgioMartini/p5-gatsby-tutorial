@@ -19,6 +19,7 @@
   "dependencies": {
     "@loadable/component": "^5.12.0",
     "gatsby": "^2.20.12",
+    "gatsby-plugin-postcss": "^2.3.12",
     "gh-pages": "^2.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -26,7 +27,8 @@
     "react-p5-wrapper": "^2.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "tailwindcss": "^1.8.10"
   },
   "repository": {
     "type": "git",

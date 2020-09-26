@@ -6,4 +6,7 @@
 
 module.exports = {
   pathPrefix: "/p5-gatsby-tutorial",
+  plugins: [
+    'gatsby-plugin-postcss'
+  ]
 }
