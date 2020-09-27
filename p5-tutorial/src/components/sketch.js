@@ -1,3 +1,9 @@
+let darkPurple = '#352D39'
+let purple = '#6D435A'
+let green = '#B1EDE8'
+let cream = '#FFFCF9'
+let pink = '#FF6978'
+
 const between = (x, min, max) =>  x >= min && x <= max
 
 function isOverGridPoint (mouseX, mouseY, x, y, range = 20) {
@@ -8,16 +14,13 @@ function isOverGridPoint (mouseX, mouseY, x, y, range = 20) {
 
 // https://coolors.co/ff6978-fffcf9-b1ede8-6d435a-352d39
 export default function Sketch(p5) {
-  let canvas
-  let colorPicker
-  let cols = 20
-  let rows
-  let spots = []
   const windowResized = (p5) => p5.resizeCanvas(p5.windowWidth, p5.windowHeight)
   const lineThresh = 40
-  // let color = "#2b1b69"
-  // let color = "#3E85BB"
-  let color = '#FF6978'
+  let color = pink
+  let spots = []
+  let cols = 20
+  let canvas
+  let rows
 
   function Spot(p5, x, y) {
     let _x = x
@@ -68,14 +71,13 @@ export default function Sketch(p5) {
 
   p5.setup = () => {
     canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight /*, p5.WEBGL*/)
-    // colorPicker = p5.createColorPicker(color);
-    // colorPicker.position(0, p5.height + 5);
+    p5.background(darkPurple);
+    canvas.position(0, 0).style('z-index', '-1')
+    
     cols = p5.map(p5.width, 0, 2000 , 2, 30)
     const gridSize  = p5.width/cols
     rows = p5.height/gridSize
 
-    canvas.position(0, 0).style('z-index', '-1')
-    p5.background('#352D39');
     for (let x = 0; x < cols+1; x++) {
       for (let y = 0; y < rows+1; y++) {
         spots.push(Spot(p5, x * gridSize, y * gridSize))
@@ -84,8 +86,7 @@ export default function Sketch(p5) {
   }
 
   p5.draw = () => {
-    p5.background('#352D39')
-    // color = colorPicker.color()
+    p5.background(darkPurple)
     p5.strokeWeight(1)
     spots.forEach((s, i) => {
       let { _x, _y, hovered } = s.values()

@@ -5,3 +5,20 @@
 .gioGreen {
   color: #B1EDE8;
 }
+
+.gioAnchor {
+  color: #fff;
+}
+
+.gioAnchor:hover {
+  color: #B1EDE8;
+  text-decoration: underline;
+}
+
+.gioBgDarkPurple {
+  background: #352D39;
+}
+
+::selection {
+  background: #6D435A;
+}

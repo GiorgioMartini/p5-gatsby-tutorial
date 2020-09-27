@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import { Link } from "gatsby"
 
 const IndexPage = () => (
-    <div>
+    <div className="">
         <P5/>
         <Layout>
         <div className="max-w-lg">
@@ -15,7 +15,10 @@ const IndexPage = () => (
             <Link className="gioGreen" to='/code'> music</Link> and taking
             <Link className="gioGreen" to='/code'> pics</Link>.
           </p>
-          <p className="text-4xl">You can find me on twitter, soundcloud and instagram.</p>
+          <p className="text-4xl">You can find me on
+          <Link className="gioGreen" to='/code'> twitter</Link>, 
+          <Link className="gioGreen" to='/code'> soundcloud</Link> and
+          <Link className="gioGreen" to='/code'> instagram</Link>.</p>
         </div>
       </Layout>        
     </div>
