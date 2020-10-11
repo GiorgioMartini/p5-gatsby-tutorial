@@ -1,7 +1,7 @@
+import React, { Component } from "react"
+import {loadableP5 as P5Wrapper} from '../loadable';
+
 let darkPurple = '#352D39'
-let purple = '#6D435A'
-let green = '#B1EDE8'
-let cream = '#FFFCF9'
 let pink = '#FF6978'
 
 const between = (x, min, max) =>  x >= min && x <= max
@@ -13,7 +13,7 @@ function isOverGridPoint (mouseX, mouseY, x, y, range = 20) {
 }
 
 // https://coolors.co/ff6978-fffcf9-b1ede8-6d435a-352d39
-export default function Sketch(p5) {
+function Sketch(p5) {
   const windowResized = (p5) => p5.resizeCanvas(p5.windowWidth, p5.windowHeight)
   const lineThresh = 40
   let color = pink
@@ -102,11 +102,17 @@ export default function Sketch(p5) {
           p5.line(_x, _y, ref.values()._x, ref.values()._y)
         }
       })
-
     })
   }
 
-  p5.mouseClicked = () => {
-    console.log(8)
+  // p5.mouseClicked = () => {
+  //   console.log(8)
+  // }
+}
+
+export default class App extends Component{
+
+  render() {
+    return <P5Wrapper sketch={Sketch} />
   }
 }
